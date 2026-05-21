@@ -1,9 +1,9 @@
 [package]
 name = "makura-kotoba"
+description = "A CLI tool for managing environment variables"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
-license-file = "LICENSE"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }

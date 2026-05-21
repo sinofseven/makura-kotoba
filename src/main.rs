@@ -1,12 +1,14 @@
 use clap::{Parser, Subcommand};
 
 mod cmd;
+pub mod traits;
 
-use cmd::{apply_command, init_command, ApplyArgs, InitArgs};
+use cmd::apply::ApplyArgs;
+use cmd::init::InitArgs;
+use traits::cmd::Cmd;
 
 #[derive(Parser)]
-#[command(name = "makura-kotoba")]
-#[command(about = "A CLI tool for managing environment variables")]
+#[command(about, version, arg_required_else_help = true)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -20,11 +22,11 @@ enum Commands {
     Init(InitArgs),
 }
 
-fn main() {
+fn main() -> Result<(), String> {
     let cli = Cli::parse();
 
     match cli.command {
-        Commands::Apply(args) => apply_command(args),
-        Commands::Init(args) => init_command(args),
+        Commands::Apply(args) => args.run(),
+        Commands::Init(args) => args.run(),
     }
 }

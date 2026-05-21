@@ -1,5 +1,12 @@
-use super::ApplyArgs;
+use crate::traits::cmd::Cmd;
+use clap::Args;
 
-pub fn apply_command(_args: ApplyArgs) {
-    println!("apply subcommand called");
+#[derive(Args)]
+pub struct ApplyArgs {}
+
+impl Cmd for ApplyArgs {
+    fn run(self) -> Result<(), String> {
+        println!("apply subcommand called");
+        Ok(())
+    }
 }

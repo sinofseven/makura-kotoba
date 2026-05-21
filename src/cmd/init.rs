@@ -1,5 +1,12 @@
-use super::InitArgs;
+use crate::traits::cmd::Cmd;
+use clap::Args;
 
-pub fn init_command(_args: InitArgs) {
-    println!("init subcommand called");
+#[derive(Args)]
+pub struct InitArgs {}
+
+impl Cmd for InitArgs {
+    fn run(self) -> Result<(), String> {
+        println!("init subcommand called");
+        Ok(())
+    }
 }
